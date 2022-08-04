@@ -1,2 +1,8 @@
-![text](https://github.com/mduzoylum/flight/blob/master/Screenshots/docker.png)
-![text](https://github.com/mduzoylum/flight/blob/master/Screenshots/table.png)
+## Proje çalıştırmak için
+docker-compose up -d
+
+## Docker
+![text](https://github.com/mduzoylum/flight/blob/main/Screenshots/docker.png)
+
+## Flight Logs Table
+![text](https://github.com/mduzoylum/flight/blob/main/Screenshots/table.png)
