@@ -12,12 +12,15 @@ services:
         image: mysql:latest # use latest version of mysql
         container_name: mysql_con # add a name for the container
         command: --default-authentication-plugin=mysql_native_password
-        restart: unless-stopped
+        restart: always
         environment: # add default values, see docs for more info.
-          MYSQL_ROOT_PASSWORD: root
+          - MYSQL_ROOT_PASSWORD=root
+          - MYSQL_USER=test
+          - MYSQL_PASSWORD=root
+          - MYSQL_DATABASE=flights
         volumes:
           - my-db:/var/lib/mysql
-          - ./Containers/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+          - ./Containers/dump.sql:/docker-entrypoint-initdb.d/mydump.sql
         ports:
           - '3306:3306'
 
