@@ -9,7 +9,7 @@ if (isset($_POST["search"]["value"])) {
     $query .= 'OR origin LIKE "%' . $_POST["search"]["value"] . '%" ';
     $query .= 'OR destination LIKE "%' . $_POST["search"]["value"] . '%" ';
 }
-//print_r($_POST['order']['0']);die("##");
+
 // Order
 if (isset($_POST["order"])) {
     $query .= 'ORDER BY ' . intval($_POST['order']['0']['column'])+1 . ' ' . $_POST['order']['0']['dir'] . ' ';

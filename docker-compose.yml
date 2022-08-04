@@ -3,6 +3,7 @@ version: '3.9'
 services:
     php-env:
         build: .
+        container_name: Container_Php
         volumes:
             - .:/var/www/html/
             - ./Containers/php.ini:/usr/local/etc/php/php.ini
@@ -12,7 +13,7 @@ services:
             - .env
     mysql:
         image: mysql:latest
-        container_name: mysql_con
+        container_name: Container_Mysql
         command: --default-authentication-plugin=mysql_native_password
         restart: always
         environment:
@@ -28,6 +29,7 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
+        container_name: Container_Phpmyadmin
         restart : always
         ports:
           - "8082:80"
