@@ -8,16 +8,18 @@ services:
             - ./Containers/php.ini:/usr/local/etc/php/php.ini
         ports:
             - 9000:80
+        env_file:
+            - .env
     mysql:
         image: mysql:latest
         container_name: mysql_con
         command: --default-authentication-plugin=mysql_native_password
         restart: always
         environment:
-          - MYSQL_ROOT_PASSWORD=root
-          - MYSQL_USER=test
-          - MYSQL_PASSWORD=root
-          - MYSQL_DATABASE=flights
+          - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          - MYSQL_USER=${MYSQL_USER}
+          - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+          - MYSQL_DATABASE=${MYSQL_DATABASE}
         volumes:
           - my-db:/var/lib/mysql
           - ./Containers/dump.sql:/docker-entrypoint-initdb.d/mydump.sql

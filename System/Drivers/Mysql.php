@@ -16,23 +16,10 @@ class Mysql
 
     public function __construct()
     {
-
-
-//echo MYSQL_PASSWORD;die("##");
-//        $this->host = \MD\Helper\Config::get('MYSQL_SERVER');
-//        $this->user = \MD\Helper\Config::get('MYSQL_USER');
-//        $this->pass = \MD\Helper\Config::get('MYSQL_PASS');
-//        $this->docker = \MD\Helper\Config::get('MYSQL_DB');
-
-        $this->host = 'mysql';
-        $this->user = 'root';
-        $this->pass = 'root';
-        $this->db = 'flights';
-
-//        $this->host = "127.0.0.1";
-//        $this->user = "root";
-//        $this->pass = "";
-//        $this->docker = "crud";
+        $this->host = getenv('MYSQL_HOST', true) ?: getenv('MYSQL_HOST');
+        $this->user = getenv('MYSQL_USER', true) ?: getenv('MYSQL_USER');
+        $this->pass = getenv('MYSQL_PASSWORD', true) ?: getenv('MYSQL_PASSWORD');
+        $this->db = getenv('MYSQL_DATABASE', true) ?: getenv('MYSQL_DATABASE');
     }
 
     static public function getInstance()
