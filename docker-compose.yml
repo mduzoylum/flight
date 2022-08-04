@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+    php-env:
+        build: .
+        volumes:
+            - .:/var/www/html/
+            - ./Containers/php.ini:/usr/local/etc/php/php.ini
+        ports:
+            - 9000:80
+    mysql:
+        image: mysql:latest # use latest version of mysql
+        container_name: mysql_con # add a name for the container
+        command: --default-authentication-plugin=mysql_native_password
+        restart: unless-stopped
+        environment: # add default values, see docs for more info.
+          MYSQL_ROOT_PASSWORD: root
+        volumes:
+          - my-db:/var/lib/mysql
+          - ./Containers/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+        ports:
+          - '3306:3306'
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        restart : always
+        ports:
+          - "8082:80"
+        environment:
+          - PMA_ARBITRARY=1
+
+volumes: # add persistent data even if container is removed.
+    my-db:
